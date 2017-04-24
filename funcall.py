@@ -23,7 +23,7 @@ class ChainableObject(object):
             else:
                 return ChainableObject(member)
 
-    def _(self, func):
+    def call(self, func):
         return ChainableObject(
             self(),
             lambda _, *args, **kwargs: func(self.__func(self.__value),
@@ -64,6 +64,9 @@ class ChainableObject(object):
     def __sub__(self, *args, **kwargs):
         return self.__func(self.__value).__sub__(*args, **kwargs)
 
+    def __mul__(self, *args, **kwargs):
+        return self.__func(self.__value).__mul__(*args, **kwargs)
+
     def __div__(self, *args, **kwargs):
         return self.__func(self.__value).__div__(*args, **kwargs)
 
@@ -100,6 +103,9 @@ class ChainableObject(object):
     def __rsub__(self, *args, **kwargs):
         return self.__func(self.__value).__rsub__(*args, **kwargs)
 
+    def __rmul__(self, *args, **kwargs):
+        return self.__func(self.__value).__rmul__(*args, **kwargs)
+
     def __rdiv__(self, *args, **kwargs):
         return self.__func(self.__value).__rdiv__(*args, **kwargs)
 
@@ -135,6 +141,9 @@ class ChainableObject(object):
 
     def __isub__(self, *args, **kwargs):
         return self.__func(self.__value).__isub__(*args, **kwargs)
+
+    def __imul__(self, *args, **kwargs):
+        return self.__func(self.__value).__imul__(*args, **kwargs)
 
     def __idiv__(self, *args, **kwargs):
         return self.__func(self.__value).__idiv__(*args, **kwargs)
